@@ -1,0 +1,27 @@
+{% set version = "0.2.3gmt" %}
+
+package:
+  name: tbvaccine
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/gabrielcnr/tbvaccine.git
+  git_tag: 0.2.3gmt
+
+build:
+  entry_points:
+    - tbvaccine = tbvaccine.cli:main
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  run:
+    - python
+    - setuptools
+    - pygments
+
+test:
+  imports:
+    - tbvaccine
+
+  commands:
+    - tbvaccine -h
