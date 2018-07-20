@@ -182,6 +182,8 @@ class TBVaccine:
         for frame, line in zip(stack, traceback.format_tb(original_tb)):
             # Frame lines contain newlines, so we need to split on them.
             lines.extend(line.split("\n"))
+            if type(frame.f_locals).__name__ == 'DynamicScope':
+                continue
             var_tuples = sorted(frame.f_locals.items())
             if not var_tuples:
                 # There are no locals, so continue.
